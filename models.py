@@ -1,0 +1,37 @@
+from supabase import create_client, Client
+
+SUPABASE_URL = "https://xlflptaouhxnjyqarsgt.supabase.co"
+# WAJIB: Pakai Service Role Key / Secret Key kamu!
+SUPABASE_KEY = "sb_secret_V6Vw8Xox8OgPgbEqCiFxqA_VZ_r8g2E" 
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+class MenuModel:
+    @staticmethod
+    def get_all():
+        res = supabase.table("menu").select("*, kategori(nama_kategori)").execute()
+        return res.data if res.data else []
+
+    @staticmethod
+    def get_by_id(menu_id):
+        res = supabase.table("menu").select("*").eq("id", menu_id).single().execute()
+        return res.data
+
+    @staticmethod
+    def create(data):
+        return supabase.table("menu").insert(data).execute()
+
+    @staticmethod
+    def update(menu_id, data):
+        return supabase.table("menu").update(data).eq("id", menu_id).execute()
+
+    @staticmethod
+    def delete(menu_id):
+        return supabase.table("menu").delete().eq("id", menu_id).execute()
+
+class KategoriModel:
+    @staticmethod
+    def get_all():
+        # Mengambil daftar kategori
+        res = supabase.table("menu").select("*, kategori(nama_kategori)").execute()
+        return res.data if res.data else []
