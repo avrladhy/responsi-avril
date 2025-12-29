@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-4">
+  <h2>Daftar Pesanan Masuk</h2>
+  <table class="table table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Customer</th>
+        <th>Menu</th>
+        <th>Total</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in pesanan %}
+      <tr>
+        <td>{{ p.nama_customer }}</td>
+        <td>{{ p.menu_dipesan }}</td>
+        <td>{{ p.total_harga | rupiah }}</td>
+        <td><span class="badge bg-info">{{ p.status }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary"
+    >Kembali ke Menu</a
+  >
+</div>
+{% endblock %}

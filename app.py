@@ -117,7 +117,7 @@ def edit_menu(menu_id):
 
     menu_data = MenuModel.get_by_id(menu_id)
     kategori_list = KategoriModel.get_all()
-    return render_template("edit_menu.html", m=menu_data, kategori=kategori_list)
+    return render_template("edit_menu.html", m=menu_data, kategori=kategori_list.data)
 
 
 @app.route("/admin/menu/delete/<int:menu_id>")

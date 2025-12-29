@@ -36,7 +36,6 @@ class MenuModel:
 class KategoriModel:
     @staticmethod
     def get_all():
-        # Mengambil daftar kategori
         res = supabase.table("kategori").select("*").execute()
         return res
 
